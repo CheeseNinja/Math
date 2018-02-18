@@ -10,4 +10,4 @@ This Matrix program has: </br>
 
 <strong>Instructions: </strong>By pressing calculate, it calculates all of the transformation in the same order it was inputted. The result is printed in the JTextArea. The transformations are resetted but the inputted vectors are not This program only does 2x2 and 1x1 matrixes. </br> <strong>NOTE </strong>The answer is displayed in terms of radians!</br>
 
-<img width="605" alt="screen shot 2018-02-17 at 10 54 53 pm" src="https://user-images.githubusercontent.com/26124862/36348024-da753556-1435-11e8-9856-e17c658aa859.png">
+<img width="601" alt="screen shot 2018-02-18 at 11 18 12 am" src="https://user-images.githubusercontent.com/26124862/36354126-81f9ea3a-149d-11e8-88bf-619df17749b1.png">
