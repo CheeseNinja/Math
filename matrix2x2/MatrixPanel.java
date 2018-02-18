@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class MatrixPanel extends JFrame {
-
 	/**
 	 * 
 	 */
@@ -35,7 +34,11 @@ public class MatrixPanel extends JFrame {
 		east = new JPanel();
 		west = new JPanel();
 
-		list = new JTextArea(20, 20);
+		// current vector(s)
+		currentVector = new JTextField(16);
+		currentVector.setEditable(false);
+
+		list = new JTextArea(17, 24);
 		list.setEditable(false);
 		JScrollPane scroll = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -45,12 +48,42 @@ public class MatrixPanel extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				calculatingMatrix(masterMatrix);
-				list.append(masterMatrix.get(0).toString() + "============\n");
+				list.append(masterMatrix.get(0).toString() + "===================================\n");
+				counter = 1;
 			}
 
 		});
+		JButton clear = new JButton("Clear");
+		clear.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				list.setText("");
+				currentVector.setText("");
+				initialVector.setText("");
+				inputX.setText("");
+				inputY.setText("");
+				inpEquation.setText("");
+				inpDegree.setText("");
+				usera11.setText("");
+				usera12.setText("");
+				usera21.setText("");
+				usera22.setText("");
+				initial11 = 1;
+				initial12 = 0;
+				initial21 = 0;
+				initial22 = 1;
+				counter = 1;
+			}
+
+		});
+		center.add(new JLabel("Current Vector(s)"));
+		center.add(currentVector);
 		center.add(scroll);
+		center.add(filler(70, 10));
 		center.add(calculate);
+		center.add(clear);
+		center.add(filler(70, 10));
 
 		north.setPreferredSize(new Dimension(800, 30));
 		north.setBackground(Color.BLACK);
@@ -84,8 +117,11 @@ public class MatrixPanel extends JFrame {
 						s = s.substring(s.indexOf("<") + 1);
 						initial12 = Double.parseDouble(s.substring(0, s.indexOf(",")));
 						initial22 = Double.parseDouble(s.substring(s.indexOf(",") + 1, s.indexOf(">")));
+						currentVector.setText(
+								"<" + initial11 + "," + initial21 + ">" + ",<" + initial12 + "," + initial22 + ">");
 					} catch (Exception e) {
 					}
+					initialVector.setText("");
 				}
 			}
 
@@ -163,6 +199,8 @@ public class MatrixPanel extends JFrame {
 						scaleX = Double.parseDouble(inputX.getText());
 						scaleY = Double.parseDouble(inputY.getText());
 						masterMatrix.add(new Matrix("Translate", scaleX, 0, scaleY, 0));
+						list.append(counter + ") Translate:  X by " + scaleX + "  and  Y by " + scaleY + "\n");
+						counter++;
 					}
 
 					catch (Exception e) {
@@ -177,7 +215,9 @@ public class MatrixPanel extends JFrame {
 						Matrix m = new Matrix("Reflection", Math.cos(reflectAngleX), Math.cos(reflectAngleY),
 								Math.sin(reflectAngleX), Math.sin(reflectAngleY));
 						masterMatrix.add(m);
-						setVisible(true);
+						list.append(counter + ") Reflection:  " + round(Math.toDegrees(degreeRotation))
+								+ " degrees counterclockwise\n");
+						counter++;
 					} catch (Exception e) {
 					}
 				} else if (rotation.isSelected() && inpDegree.getText().length() > 0) {
@@ -186,6 +226,9 @@ public class MatrixPanel extends JFrame {
 						rotationDegrees2 = rotationDegrees1 + (Math.PI / 2);
 						masterMatrix.add(new Matrix("Rotation", Math.cos(rotationDegrees1), Math.cos(rotationDegrees2),
 								Math.sin(rotationDegrees1), Math.sin(rotationDegrees2)));
+						list.append(counter + ") Rotation:  " + round(Math.toDegrees(rotationDegrees1))
+								+ " degrees counterclockwise\n");
+						counter++;
 					} catch (Exception e) {
 					}
 				}
@@ -193,6 +236,7 @@ public class MatrixPanel extends JFrame {
 
 		});
 		JPanel userDefined = new JPanel() {
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
@@ -227,10 +271,18 @@ public class MatrixPanel extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				masterMatrix.add(new Matrix("User",Double.parseDouble(usera11.getText()),Double.parseDouble(usera12.getText()),
-						Double.parseDouble(usera21.getText()),Double.parseDouble(usera22.getText())));
+				try {
+					masterMatrix.add(new Matrix("User", Double.parseDouble(usera11.getText()),
+							Double.parseDouble(usera12.getText()), Double.parseDouble(usera21.getText()),
+							Double.parseDouble(usera22.getText())));
+					list.append(counter + ") Custom:  <" + Double.parseDouble(usera11.getText()) + ","
+							+ Double.parseDouble(usera21.getText()) + ">,<" + Double.parseDouble(usera12.getText())
+							+ "," + Double.parseDouble(usera22.getText()) + ">\n");
+					counter++;
+				} catch (Exception e) {
+				}
 			}
-			
+
 		});
 		userDefined.add(add2);
 		return inputPanel;
@@ -279,6 +331,11 @@ public class MatrixPanel extends JFrame {
 		return filler;
 	}
 
+	private double round(double x) {
+		double roundOff = (double) Math.round(x * 100) / 100;
+		return roundOff;
+	}
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -288,7 +345,8 @@ public class MatrixPanel extends JFrame {
 	}
 
 	private JPanel main, center, north, east, west, inputPanel;
-	private JTextField initialVector, inputX, inputY, inpEquation, inpDegree, usera11, usera12, usera21, usera22;
+	private JTextField initialVector, inputX, inputY, inpEquation, inpDegree, usera11, usera12, usera21, usera22,
+			currentVector;
 	private JRadioButton translate, reflection, rotation;
 	private double scaleX, scaleY, degreeRotation, reflectAngleX, reflectAngleY, rotationDegrees1, rotationDegrees2,
 			initial11, initial12, initial21, initial22;
@@ -296,5 +354,5 @@ public class MatrixPanel extends JFrame {
 	public MatrixPanel m;
 	private Matrix finalMatrix;
 	private JTextArea list;
-
+	private int counter = 1;
 }
