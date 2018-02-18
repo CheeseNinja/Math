@@ -9,9 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class MatrixPanel extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public MatrixPanel() {
@@ -205,9 +203,7 @@ public class MatrixPanel extends JFrame {
 
 					catch (Exception e) {
 					}
-				}
-				// have some simple rad(), sqrt(), power(), etc.
-				else if (reflection.isSelected() && inpEquation.getText().length() > 0) {
+				} else if (reflection.isSelected() && inpEquation.getText().length() > 0) {
 					try {
 						degreeRotation = Math.atan(Double.parseDouble(inpEquation.getText()));
 						reflectAngleX = (degreeRotation % (Math.PI)) * 2;
