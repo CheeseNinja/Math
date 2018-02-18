@@ -8,4 +8,4 @@ This Matrix program has: </br>
 2) JTextArea to record down all of the previous transformation results. </br>
 4) try and catch to prevent the an error within the program. </br>
 
-<strong>Instructions: </strong>By pressing calculate, it calculates all of the transformation in the same order it was inputted. The result is printed in the JTextArea. The transformations and inital vectors are also resetted to <1,0>,<0,1> unless a new set of vectors are inputted. This program only does 2x2 and 1x1 matrixes. <strong>NOTE </strong>The answer is displayed in terms of radians!</br>
+<strong>Instructions: </strong>By pressing calculate, it calculates all of the transformation in the same order it was inputted. The result is printed in the JTextArea. The transformations and inital vectors are also resetted to <1,0>,<0,1> unless a new set of vectors are inputted. This program only does 2x2 and 1x1 matrixes. </br> <strong>NOTE </strong>The answer is displayed in terms of radians!</br>
