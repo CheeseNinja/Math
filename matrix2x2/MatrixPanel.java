@@ -112,7 +112,7 @@ public class MatrixPanel extends JFrame {
 
 	private JPanel linearTransformation() {
 		inputPanel = new JPanel();
-		inputPanel.setPreferredSize(new Dimension(225, 300));
+		inputPanel.setPreferredSize(new Dimension(225, 330));
 		// Radio button
 		translate = new JRadioButton("Translate");
 		reflection = new JRadioButton("Reflection");
@@ -123,7 +123,7 @@ public class MatrixPanel extends JFrame {
 		linearButtons.add(rotation);
 		JTextField condition = new JTextField(18);
 		condition.setEditable(false);
-		condition.setText("  Enter values for the transformation");
+		condition.setText("Enter values for transformation");
 
 		inputPanel.add(translate);
 		inputPanel.add(reflection);
