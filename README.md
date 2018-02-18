@@ -1,5 +1,5 @@
 # Math Programs
-Algorithms are everywhere. One area where I explore most of these is in my Pre-Calculus class. Ever since I found my passion for programming, I usually doze off in class pondering on how would I create a program to solve these problems. As a hectic student with so much to learn, there's no better way to learn math and computer science at the same time than to write these programs!
+Algorithms are everywhere. One area where I explore most of these is in my Pre-Calculus class. Ever since I found my passion for programming, I usually doze off in class pondering on how I would create a program to solve these problems. As a hectic student with so much to learn, there's no better way to learn math and computer science at the same time than to write these programs!
 ## Matrix
 This program allows the user to apply linear transformations (e.g. translation, reflection, rotation) to user defined 2x2 vectors. </br>
 This Matrix program has: </br>
