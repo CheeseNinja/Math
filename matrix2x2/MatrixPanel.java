@@ -97,7 +97,7 @@ public class MatrixPanel extends JFrame {
 		JLabel subTitle = new JLabel("<html><font color = 'white'>Matrix User Input System</font></html>");
 		subTitle.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JLabel initial1x2 = new JLabel("Enter inital 1x2 Vector: ");
+		JLabel initial1x2 = new JLabel("Enter inital vertical 2x1 Vector: ");
 		initial1x2.setForeground(new Color(77, 210, 255));
 		initialVector = new JTextField(20);
 		initialVector.setText("Ex: <1,0> , <0,1>");
@@ -116,7 +116,7 @@ public class MatrixPanel extends JFrame {
 						initial12 = Double.parseDouble(s.substring(0, s.indexOf(",")));
 						initial22 = Double.parseDouble(s.substring(s.indexOf(",") + 1, s.indexOf(">")));
 						currentVector.setText(
-								"<" + initial11 + "," + initial21 + ">" + ",<" + initial12 + "," + initial22 + ">");
+								"<" + initial11 + "," + initial21 + ">" + ",<" + 	12 + "," + initial22 + ">");
 					} catch (Exception e) {
 					}
 					initialVector.setText("");
@@ -313,10 +313,10 @@ public class MatrixPanel extends JFrame {
 
 	private Matrix doMatrix(Matrix master, Matrix m) {
 		double a11 = master.geta11(), a12 = master.geta12(), a21 = master.geta21(), a22 = master.geta22();
-		master.seta11((a11 * m.geta11()) + (a21 * m.geta12()));
-		master.seta12((a12 * m.geta11()) + (a22 * m.geta12()));
-		master.seta21((a11 * m.geta21()) + (a21 * m.geta22()));
-		master.seta22((a12 * m.geta21()) + (a22 * m.geta22()));
+		master.seta11((a11 * m.geta11()) + (a12 * m.geta21()));
+		master.seta12((a11 * m.geta12()) + (a12 * m.geta22()));
+		master.seta21((a21 * m.geta11()) + (a22 * m.geta21()));
+		master.seta22((a21 * m.geta12()) + (a22 * m.geta22()));
 		return master;
 	}
 
