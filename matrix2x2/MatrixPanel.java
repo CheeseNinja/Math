@@ -8,7 +8,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-//March 2018
+/*
+ * @date February 11, 2018
+ * @author Darren Wang
+ */
 
 public class MatrixPanel extends JFrame {
 
