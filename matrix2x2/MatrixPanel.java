@@ -121,7 +121,7 @@ public class MatrixPanel extends JFrame {
 						initial12 = Double.parseDouble(s.substring(0, s.indexOf(",")));
 						initial22 = Double.parseDouble(s.substring(s.indexOf(",") + 1, s.indexOf(">")));
 						currentVector.setText(
-								"<" + initial11 + "," + initial21 + ">" + ",<" + 	12 + "," + initial22 + ">");
+								"<" + initial11 + "," + initial21 + ">" + ",<" + initial12 + "," + initial22 + ">");
 					} catch (Exception e) {
 					}
 					initialVector.setText("");
